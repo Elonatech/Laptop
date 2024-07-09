@@ -1,25 +1,74 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom';
+import ProductCard from './components/products/ProductCard';
+import CartButton from './components/cartButton/CartButton';
+import CartPage from './components/cartPage/CartPage';
+import emailjs from 'emailjs-com';
 import './App.css';
 
-function App() {
+const products = [
+  { id: 1, name: 'AOCWEI Laptop Windows 11 Intel Celeron 6GB+256GB SSD 15.6" 1920*1080 2.4G+5G WiFi +mouse', price:  290900, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/67/3648192/1.jpg?9563' },
+  { id: 2, name: 'Hp EliteBook 840 G6 Intel Core I5-16GB RAM/1TB SSD/Backlit Keyboard/FP Reader Wins 11 Pro Laptop +BAG', price: 505000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/01/148813/1.jpg?0177' },
+  { id: 3, name: 'WOZIFAN 14.1"Intel Celeron N4020 6GB+256GB,SSD Support To 1 TB，2.4G+5G Wi-Fi,1920*1080 Laptop Blue', price:  290300, image: 'https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/74/2669103/1.jpg?2435' },
+  { id: 4, name: 'Toshiba Portege X30W-J X360 Touchscreen 11Th Gen Intel Core I5,1TB SSD, 16GB RAM,13.3",Win 10 Pro', price: 868000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/9832612/1.jpg?5121' },
+  { id: 5, name: 'DELL Latitude 3310 11Th Gen Intel®️ Core™️ I5-Quad Core 256GB SSD 8GB RAM 13.3"WIN10 Pro', price: 658000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/44/871479/1.jpg?5583' },
+  { id: 6, name: 'Hp ProBook 11 X360- Intel Pentium 256GB SSD-TOUCHSCREEN 4GB RAM Windows10 Pro + Laptop Pouch', price: 193000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/26/5662902/1.jpg?6764' },
+  { id: 7, name: 'Hp EliteBook 840 G6 Intel Core I5-8GB RAM/512GB SSD/Backlit Keyboard/FP Reader Windows 11 Pro + BAG', price: 465000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/07/089507/1.jpg?8587' },
+  { id: 8, name: 'DELL Latitude 7370 Intel Core I5 Keyboard Backlit, 8GB RAM, 256GB SSD Windows 11', price: 400000, image: 'https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/22/2919891/1.jpg?0702' },
+  
+];
+
+const App = () => {
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(item => item.id !== productId));
+  };
+
+  const checkout = () => {
+    const templateParams = {
+      to_name: 'Elonatech seller',
+      message: `Order details: ${cart.map(item => item.name).join(', ')}`,
+      to_email: 'chukwuj40@gmail.com',
+      from_name: 'Elonatech Store',
+    };
+
+    emailjs.send('service_on3696o', 'template_arivmae', templateParams, '16FBCsBnDPoYTULEj')
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Order placed!');
+      }, (error) => {
+        console.log('FAILED...', error);
+        alert('Failed to place order');
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <CartButton cartCount={cart.length} onClick={() => navigate('/cart')} />
+      <Routes>
+        <Route path="/" element={
+          <div className="product-list-container">
+            <div className="product-list">
+              {products.map(product => (
+                <ProductCard key={product.id} product={product} addToCart={addToCart} />
+              ))}
+            </div>
+          </div>
+        } />
+        <Route path="/cart" element={
+          <CartPage cartItems={cart} removeFromCart={removeFromCart} checkout={checkout} />
+        } />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
+
