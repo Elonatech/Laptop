@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProductCard.css';
 import { FaNairaSign } from "react-icons/fa6";
 
 const ProductCard = ({ product, addToCart }) => {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div 
-      className={`product-card ${hovered ? 'hovered' : ''}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <img src={product.image} alt={product.name} />
-      <h3>{product.name}</h3>
-      <p><FaNairaSign className='naira'/>{product.price}</p>
-      <button 
-        className={`add-to-cart ${hovered ? 'visible' : ''}`}
-        onClick={() => addToCart(product)}
-      >
-        Add to Cart
-      </button>
+    <div className="product-card">
+      <img src={product.image} alt={product.name} className="product-image" />
+      <div className="product-info">
+        <h3 className="product-name">{product.name}</h3>
+        <p className="product-price">
+          <FaNairaSign />{product.price.toLocaleString()}
+        </p>
+        <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
+          ADD TO CART
+        </button>
+      </div>
     </div>
   );
 };

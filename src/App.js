@@ -24,21 +24,39 @@ const App = () => {
   const navigate = useNavigate();
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
   };
 
   const removeFromCart = (productId) => {
-    setCart(cart.filter(item => item.id !== productId));
+    setCart(prevCart => prevCart.filter(item => item.id !== productId));
+  };
+
+  const updateQuantity = (productId, newQuantity) => {
+    setCart(prevCart => prevCart.map(item =>
+      item.id === productId ? { ...item, quantity: newQuantity } : item
+    ));
   };
 
   const checkout = () => {
+    const formatOrderDetails = (cart) => {
+      return cart.map(item => `${item.name} - Quantity: ${item.quantity}`).join('\n');
+    };
+    
     const templateParams = {
       to_name: 'Elonatech seller',
-      message: `Order details: ${cart.map(item => item.name).join(', ')}`,
+      order_details: formatOrderDetails(cart),
       to_email: 'chukwuj40@gmail.com',
       from_name: 'Elonatech Store',
     };
-
+    
     emailjs.send('service_on3696o', 'template_arivmae', templateParams, '16FBCsBnDPoYTULEj')
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
@@ -51,7 +69,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <CartButton cartCount={cart.length} onClick={() => navigate('/cart')} />
+      <header>
+        <CartButton cartCount={cart.reduce((total, item) => total + item.quantity, 0)} onClick={() => navigate('/cart')} />
+      </header>
       <Routes>
         <Route path="/" element={
           <div className="product-list-container">
@@ -63,7 +83,12 @@ const App = () => {
           </div>
         } />
         <Route path="/cart" element={
-          <CartPage cartItems={cart} removeFromCart={removeFromCart} checkout={checkout} />
+          <CartPage 
+            cartItems={cart} 
+            removeFromCart={removeFromCart} 
+            updateQuantity={updateQuantity}
+            checkout={checkout} 
+          />
         } />
       </Routes>
     </div>
