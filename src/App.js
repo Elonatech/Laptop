@@ -5,6 +5,7 @@ import ProductCard from './components/products/ProductCard';
 import CartButton from './components/cartButton/CartButton';
 import CartPage from './components/cartPage/CartPage';
 import emailjs from 'emailjs-com';
+import ProductDetail from './components/productDetail/ProductDetail';
 import './App.css';
 
 const products = [
@@ -77,7 +78,13 @@ const App = () => {
           <div className="product-list-container">
             <div className="product-list">
               {products.map(product => (
-                <ProductCard key={product.id} product={product} addToCart={addToCart} />
+                <ProductCard 
+                  key={product.id}
+                  product={product}
+                  addToCart={addToCart}
+                  updateCartItemQuantity={updateQuantity}
+                  removeFromCart={removeFromCart}
+                />
               ))}
             </div>
           </div>
@@ -88,6 +95,12 @@ const App = () => {
             removeFromCart={removeFromCart} 
             updateQuantity={updateQuantity}
             checkout={checkout} 
+          />
+        } />
+        <Route path="/product/:id" element={
+          <ProductDetail 
+            products={products}
+            addToCart={addToCart}
           />
         } />
       </Routes>

@@ -3,6 +3,8 @@
   border-radius: 4px;
   padding: 15px;
   transition: box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -43,4 +45,68 @@
 
 .add-to-cart-btn:hover {
   background-color: #e67e22;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #f68b1e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  background-color: #fff;
+  color: #f68b1e;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: #f68b1e;
+  color: #fff;
+}
+
+.quantity {
+  font-size: 1.2rem;
+  color: #f68b1e;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.star {
+  color: #ccc;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: #f68b1e;
+}
+
+.rating-count {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 5px;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f68b1e;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.heart-icon.filled {
+  color: #f68b1e;
 }

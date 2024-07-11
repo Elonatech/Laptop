@@ -1,6 +1,6 @@
 import React from 'react';
 import './CartPage.css';
-import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
+import { FaPlus, FaMinus, } from "react-icons/fa";
 import { FaNairaSign } from "react-icons/fa6";
 
 const CartPage = ({ cartItems, removeFromCart, updateQuantity, checkout }) => {
@@ -21,8 +21,9 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity, checkout }) => {
                 <span>{item.quantity}</span>
                 <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><FaPlus /></button>
               </div>
+              <br></br>
             </div>
-            <button className="remove-button" onClick={() => removeFromCart(item.id)}><FaTrash /></button>
+              <button className="remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
           </div>
         ))}
       </div>

@@ -1,0 +1,29 @@
+.product-detail {
+    display: flex;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .product-images {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .main-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-description, .product-specs {
+    margin-top: 20px;
+  }
+  
+  .product-specs ul {
+    padding-left: 20px;
+  }
