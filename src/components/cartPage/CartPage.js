@@ -21,7 +21,6 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity, checkout }) => {
                 <span>{item.quantity}</span>
                 <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><FaPlus /></button>
               </div>
-              <br></br>
             </div>
               <button className="remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
           </div>

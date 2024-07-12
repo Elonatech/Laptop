@@ -63,8 +63,8 @@ const ProductCard = ({ product, addToCart, updateCartItemQuantity, removeFromCar
       </Link>
       <p className="product-price"><FaNairaSign />{product.price.toLocaleString()}</p>
       <div className="product-rating">
-        {renderStars(product.rating || 0)}
-        <span className="rating-count">({product.ratingCount || 0})</span>
+        {renderStars(product.rating)}
+        <span className="rating-count">({product.ratingCount})</span>
       </div>
       <button className="like-button" onClick={toggleLike}>
         {liked ? <FaHeart className="heart-icon filled" /> : <FaRegHeart className="heart-icon" />}
