@@ -29,12 +29,24 @@
     cursor: pointer;
   }
   
+  .save-button {
+    background-color: #f68b1e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
   .address-content {
     font-size: 14px;
     color: #282828;
   }
   
-  .customer-name {
+  .customer-name,
+  .address-details {
     font-weight: 500;
     margin-bottom: 4px;
   }
@@ -43,3 +55,4 @@
     line-height: 1.4;
     margin: 0;
   }
+  
