@@ -4,7 +4,7 @@
   transition: box-shadow 0.3s;
   position: relative;
   width: 221.48px;
-  height: 360px;
+  height: 370px;
 
 }
 
@@ -45,6 +45,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   visibility: hidden;
+  font-size: 1.2rem;
 }
 
 .product-card:hover .add-to-cart-btn {
@@ -55,7 +56,7 @@
   background-color: #e67e22;
 }
 
-.quantity-controls {
+.product-card .quantity-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,8 +111,6 @@
 }
 
 .like-button {
-  background: none;
-  border: none;
   cursor: pointer;
   color: #f68b1e;
   font-size: 1.2rem;
@@ -119,7 +118,19 @@
   position: absolute;
   right: 20px;
   bottom: 155px;
-  border-radius: 120px;
+  background-color: rgb(252, 246, 246);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; 
+}
+
+.like-button:hover {
+  background-color: #e0e0e0;
+}
+
+.like-button:active, .like-button:focus {
+  border: 2px solid #e67e22;
 }
 
 .heart-icon.filled {

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
-import { FaStar, FaRegStar, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaStar, FaRegStar, FaHeart, FaRegHeart, FaCheckCircle } from "react-icons/fa";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { FaNairaSign } from "react-icons/fa6";
 
 const ProductCard = ({ product, addToCart, updateCartItemQuantity, removeFromCart }) => {
   const [quantity, setQuantity] = useState(0);
   const [liked, setLiked] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const increaseQuantity = () => {
     const newQuantity = quantity + 1;
@@ -38,7 +39,10 @@ const ProductCard = ({ product, addToCart, updateCartItemQuantity, removeFromCar
   };
 
   const showAddToCartMessage = () => {
-    alert(`${product.name} has been added to your cart!`);
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 2000);
   };
 
   const toggleLike = () => {
@@ -76,6 +80,12 @@ const ProductCard = ({ product, addToCart, updateCartItemQuantity, removeFromCar
           <button className="quantity-btn minus" onClick={decreaseQuantity}><FaMinus /></button>
           <span className="quantity">{quantity}</span>
           <button className="quantity-btn plus" onClick={increaseQuantity}><FaPlus /></button>
+        </div>
+      )}
+      {showSuccessMessage && (
+        <div className="success-message">
+          <FaCheckCircle className="success-icon2" />
+          Product added successfully!
         </div>
       )}
     </div>

@@ -6,6 +6,7 @@ import CartButton from './components/cartButton/CartButton';
 import CartPage from './components/cartPage/CartPage';
 import emailjs from 'emailjs-com';
 import ProductDetail from './components/productDetail/ProductDetail';
+import BillingPage from './components/billingPage/BillingPage';
 import './App.css';
 
 const products = [
@@ -60,7 +61,6 @@ const App = () => {
     emailjs.send('service_on3696o', 'template_arivmae', templateParams, '16FBCsBnDPoYTULEj')
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
-        alert('Order placed!');
       }, (error) => {
         console.log('FAILED...', error);
         alert('Failed to place order');
@@ -101,6 +101,13 @@ const App = () => {
             products={products}
             addToCart={addToCart}
           />
+        } />
+        <Route path="/billing" element={
+          <BillingPage 
+          cartItems={cart}
+          totalPrice={cart.reduce((total, item) => total + item.price * item.quantity, 0)}
+          checkout={checkout}
+        />
         } />
       </Routes>
     </div>

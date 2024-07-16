@@ -1,0 +1,37 @@
+.billing-page {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+  
+  .billing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .billing-page h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #282828;
+    margin-bottom: 20px;
+  }
+  
+  .billing-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .left-column {
+    flex: 2;
+  }
+  
+  .right-column {
+    flex: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .billing-content {
+      flex-direction: column;
+    }
+  }

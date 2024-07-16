@@ -1,0 +1,108 @@
+.order-summary {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 16px;
+  }
+  
+  .order-summary h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #282828;
+    margin: 0 0 16px 0;
+  }
+  
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #282828;
+  }
+  
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #282828;
+  }
+  
+  .price {
+    display: flex;
+    align-items: center;
+  }
+  
+  .voucher-input {
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .voucher-input input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+  }
+  
+  .apply-button {
+    background-color: #f68b1e;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  .apply-button:hover {
+    background-color: #e67e00;
+  }
+  
+  .confirm-order {
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirm-order.enabled {
+    background-color: #f68b1e;
+  }
+  
+  .confirm-order.enabled:hover {
+    background-color: #e67e00;
+  }
+  
+  .confirm-order.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .terms {
+    font-size: 12px;
+    color: #75757a;
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .terms a {
+    color: #f68b1e;
+    text-decoration: none;
+  }
+  
+  .terms a:hover {
+    text-decoration: underline;
+  }
