@@ -78,18 +78,6 @@
     transition: background-color 0.3s ease;
   }
   
-  .confirm-order.enabled {
-    background-color: #f68b1e;
-  }
-  
-  .confirm-order.enabled:hover {
-    background-color: #e67e00;
-  }
-  
-  .confirm-order.disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
   
   .terms {
     font-size: 12px;
@@ -105,4 +93,10 @@
   
   .terms a:hover {
     text-decoration: underline;
+  }
+
+  .confirm-order.active {
+    background-color: #e67e00;
+    opacity: 1;
+    cursor: pointer;
   }

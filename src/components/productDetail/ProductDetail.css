@@ -16,7 +16,7 @@
 }
 
 .main-image {
-  width: 100%;
+  width: 70%;
   height: auto;
   margin-bottom: 10px;
 }
@@ -101,18 +101,64 @@ h1 {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
+  align-items: center;
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn.jumia-style {
   background-color: #f68b1e;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 4px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
 
-.product-info .like-button {
+.add-to-cart-btn.jumia-style:hover {
+  background-color: #e67e00;
+}
+
+.add-to-cart-btn.jumia-style .btn-text {
+  font-weight: bold;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #f68b1e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  background-color: #fff;
+  color: #f68b1e;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: #f68b1e;
+  color: #fff;
+}
+
+.quantity {
+  font-size: 1.2rem;
+  color: #f68b1e;
+  padding: 0 10px;
+}
+
+.like-button {
   cursor: pointer;
   color: #f68b1e;
   background-color: rgb(252, 246, 246);
@@ -120,21 +166,26 @@ h1 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  position: absolute;
-  top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.product-info .like-button:hover {
-  background-color: #c4b19f;
+.like-button:hover {
+  background-color: #f0e6e6;
 }
 
-.product-info .like-button:focus {
-  border: 2px solid #f68b1e;
+.like-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f68b1e;
 }
 
-.product-actions .heart-icon {
+.heart-icon {
   font-size: 1.4rem;
-  vertical-align: bottom;
+}
+
+.heart-icon.filled {
+  color: #f68b1e;
 }
 
 .product-features {
@@ -177,4 +228,26 @@ h1 {
 .specs-table td:first-child {
   font-weight: bold;
   width: 30%;
+}
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.success-icon2 {
+  font-size: 1.2rem;
+}
+
+.product-actions .like-button {
+  top: 10px;
 }

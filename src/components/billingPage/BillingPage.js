@@ -11,13 +11,19 @@ function BillingPage({ cartItems, totalPrice, checkout }) {
   const navigate = useNavigate();
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [paymentReference, setPaymentReference] = useState(null);
 
-  const handlePaymentConfirmed = () => {
-    setIsPaymentConfirmed(true);
+  const userEmail = "chukwuj40@gmail.com";
+
+  const handlePaymentConfirmed = (confirmed, reference = null) => {
+    setIsPaymentConfirmed(confirmed);
+    if (reference) {
+      setPaymentReference(reference);
+    }
   };
 
   const handleCheckout = () => {
-    checkout();
+    checkout(paymentReference);
     setShowPopup(true);
   };
 
@@ -34,14 +40,18 @@ function BillingPage({ cartItems, totalPrice, checkout }) {
           <div className="left-column">
             <CustomerAddress />
             <DeliveryDetails />
-            <PaymentMethod onPaymentConfirmed={handlePaymentConfirmed} />
+            <PaymentMethod 
+              onPaymentConfirmed={handlePaymentConfirmed} 
+              totalAmount={totalPrice}
+              email={userEmail}
+            />
           </div>
           <div className="right-column">
             <OrderSummary 
               cartItems={cartItems} 
               totalPrice={totalPrice} 
               onCheckout={handleCheckout}
-              isPaymentConfirmed={isPaymentConfirmed}
+              isPaymentConfirmed={isPaymentConfirmed} 
             />
           </div>
         </div>

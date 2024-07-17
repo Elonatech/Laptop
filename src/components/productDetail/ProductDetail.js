@@ -1,21 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetail.css';
-import { FaStar, FaRegStar, FaHeart, FaRegHeart, FaShieldAlt, FaTruck, FaUndo } from "react-icons/fa";
+import { FaStar, FaRegStar, FaHeart, FaRegHeart, FaShieldAlt, FaTruck, FaUndo, FaCheckCircle, FaPlus, FaMinus } from "react-icons/fa";
 import { FaNairaSign } from "react-icons/fa6";
 
-const ProductDetail = ({ products, addToCart }) => {
+const ProductDetail = ({ products, addToCart, updateCartItemQuantity, removeFromCart, cart }) => {
   const { id } = useParams();
   const product = products.find(p => p.id === parseInt(id));
   const [liked, setLiked] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    if (product) {
+      const cartItem = cart.find(item => item.id === product.id);
+      setQuantity(cartItem ? cartItem.quantity : 0);
+    }
+  }, [cart, product]);
 
   if (!product) {
     return <div>Product not found</div>;
   }
 
+  const increaseQuantity = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    if (quantity === 0) {
+      addToCart(product);
+      showAddToCartMessage();
+    } else {
+      updateCartItemQuantity(product.id, newQuantity);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      updateCartItemQuantity(product.id, newQuantity);
+    } else if (quantity === 1) {
+      setQuantity(0);
+      removeFromCart(product.id);
+    }
+  };
+
   const handleAddToCart = () => {
-    addToCart(product, 1);
-    alert(`${product.name} has been added to your cart!`);
+    setQuantity(1);
+    addToCart(product);
+    showAddToCartMessage();
+  };
+
+  const showAddToCartMessage = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 2000);
   };
 
   const toggleLike = () => {
@@ -38,7 +77,6 @@ const ProductDetail = ({ products, addToCart }) => {
         <div className="product-images">
           <img src={product.image} alt={product.name} className="main-image" />
           <div className="thumbnail-images">
-            {/* Add more thumbnail images here */}
             <img src={product.image} alt={product.name} className="thumbnail" />
             <img src={product.image} alt={product.name} className="thumbnail" />
             <img src={product.image} alt={product.name} className="thumbnail" />
@@ -64,7 +102,17 @@ const ProductDetail = ({ products, addToCart }) => {
             <FaTruck /> Free delivery on orders above <FaNairaSign />50,000 in Lagos
           </div>
           <div className="product-actions">
-            <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>
+            {quantity === 0 ? (
+              <button className="add-to-cart-btn jumia-style" onClick={handleAddToCart}>
+                <span className="btn-text">ADD TO CART</span>
+              </button>
+            ) : (
+              <div className="quantity-controls">
+                <button className="quantity-btn minus" onClick={decreaseQuantity}><FaMinus /></button>
+                <span className="quantity">{quantity}</span>
+                <button className="quantity-btn plus" onClick={increaseQuantity}><FaPlus /></button>
+              </div>
+            )}
             <button className="like-button" onClick={toggleLike}>
               {liked ? <FaHeart className="heart-icon filled" /> : <FaRegHeart className="heart-icon" />}
             </button>
@@ -76,7 +124,7 @@ const ProductDetail = ({ products, addToCart }) => {
             </div>
             <div className="feature">
               <FaUndo />
-                <span>100% Authentic</span>
+              <span>100% Authentic</span>
             </div>
           </div>
         </div>
@@ -114,6 +162,12 @@ const ProductDetail = ({ products, addToCart }) => {
           </table>
         </div>
       </div>
+      {showSuccessMessage && (
+        <div className="success-message">
+          <FaCheckCircle className="success-icon2" />
+          Product added successfully!
+        </div>
+      )}
     </div>
   );
 };

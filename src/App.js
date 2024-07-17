@@ -46,7 +46,7 @@ const App = () => {
     ));
   };
 
-  const checkout = () => {
+  const checkout = (reference) => {
     const formatOrderDetails = (cart) => {
       return cart.map(item => `${item.name} - Quantity: ${item.quantity}`).join('\n');
     };
@@ -56,6 +56,7 @@ const App = () => {
       order_details: formatOrderDetails(cart),
       to_email: 'chukwuj40@gmail.com',
       from_name: 'Elonatech Store',
+      payment_reference: reference ? reference.reference : 'N/A',
     };
     
     emailjs.send('service_on3696o', 'template_arivmae', templateParams, '16FBCsBnDPoYTULEj')
@@ -100,6 +101,9 @@ const App = () => {
           <ProductDetail 
             products={products}
             addToCart={addToCart}
+            updateCartItemQuantity={updateQuantity}
+            removeFromCart={removeFromCart}
+            cart={cart}
           />
         } />
         <Route path="/billing" element={

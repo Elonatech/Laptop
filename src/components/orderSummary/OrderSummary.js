@@ -31,13 +31,13 @@ function OrderSummary({ cartItems, totalPrice, onCheckout, isPaymentConfirmed })
         <button className="apply-button">APPLY</button>
       </div>
       <button 
-        className={`confirm-order ${isPaymentConfirmed ? 'enabled' : 'disabled'}`}
+        className={`confirm-order ${isPaymentConfirmed ? 'active' : ''}`} 
         onClick={onCheckout}
         disabled={!isPaymentConfirmed}
       >
         CONFIRM ORDER
       </button>
-      <p className="terms">By proceeding, you are automatically accepting the <a href="#uuuu">Terms & Conditions</a></p>
+      <p className="terms">By proceeding, you are automatically accepting the <a href="#terms">Terms & Conditions</a></p>
     </div>
   );
 }
