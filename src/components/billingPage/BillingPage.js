@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BillingPage.css';
-import CustomerAddress from '../customerAddress/CustomerAddress';
-import DeliveryDetails from '../deliveryDetails/DeliveryDetails';
+import CustomerAddress from '../CustomerAddress';
+import DeliveryDetails from '../DeliveryDetails';
 import PaymentMethod from '../paymentMethod/PaymentMethod';
 import OrderSummary from '../orderSummary/OrderSummary';
 import PopupMessage from '../popupMessage/PopupMessage';
@@ -13,7 +13,7 @@ function BillingPage({ cartItems, totalPrice, checkout }) {
   const [showPopup, setShowPopup] = useState(false);
   const [paymentReference, setPaymentReference] = useState(null);
 
-  const userEmail = "chukwuj40@gmail.com";
+  const userEmail = "Joshua8638@gmail.com";
 
   const handlePaymentConfirmed = (confirmed, reference = null) => {
     setIsPaymentConfirmed(confirmed);
@@ -58,7 +58,7 @@ function BillingPage({ cartItems, totalPrice, checkout }) {
       </div>
       {showPopup && (
         <PopupMessage 
-          message="Order placed successfully!" 
+          message="Order successfull!" 
           onClose={handleClosePopup} 
         />
       )}
