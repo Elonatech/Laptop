@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { PaystackButton } from "react-paystack";
 
-const PaymentMethod = () => {
+const Payment = () => {
   const publicKey = "pk_test_a291201ab7abb90390d5f1e682d7aeaf44276e84";
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const address1 = "you are welcome"
 
   const componentProps = {
     email,
@@ -18,14 +19,14 @@ const PaymentMethod = () => {
     publicKey,
     text: "Pay Now",
     onSuccess: () =>
-      alert("Thanks for donating to us! we do not take it for granted!!"),
-    onClose: () => alert("Wait! You need to donate, don't go!!!!")
+      alert("payment successfull 🎉!!"),
+    onClose: () => alert("are you sure you want to cancel order??!!!!")
   };
 
   const style = {
     input:
       "block w-full px-4 py-2 mb-4 rounded-md border border-gray-300 focus:outline-none focus:border-primary-500",
-    button: "block w-full px-4 py-2 bg-orange-500 text-white rounded-md"
+    button: "block w-full px-4 py-2 bg-[#1369A1] text-white rounded-md"
   };
 
   return (
@@ -68,4 +69,4 @@ const PaymentMethod = () => {
   );
 };
 
-export default PaymentMethod;
+export default Payment;

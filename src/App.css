@@ -1,14 +1,6 @@
-.product-list-container {
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
 
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px 0;
-}
+
+
 
 .product-card {
   border: 1px solid #ccc;
