@@ -7,6 +7,7 @@ const Payment = () => {
   const [amount, setAmount] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const address1 = "yu are welcome"
 
   const componentProps = {
     email,
